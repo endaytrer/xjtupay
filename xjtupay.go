@@ -120,7 +120,9 @@ func (t *generalPayment) pay(passcode Passcode) (*http.Client, error) {
 	for child := range form.ChildNodes() {
 		key := getAttribute(child, "name")
 		value := getAttribute(child, "value")
-		form_data.Add(key, value)
+		if key != "" {
+			form_data.Add(key, value)
+		}
 	}
 
 	jar, err := cookiejar.New(nil)
