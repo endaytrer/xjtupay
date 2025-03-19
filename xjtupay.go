@@ -137,10 +137,8 @@ func (t *generalPayment) pay(passcode Passcode) (*http.Client, error) {
 	for k, v := range t.headers {
 		req.Header[k] = v
 	}
+	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 	_, err = client.Do(req)
-	if err != nil {
-		return nil, err
-	}
 	return &client, nil
 }
 
